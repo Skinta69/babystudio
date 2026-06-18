@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: babystudio
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_IMAGE_MODEL
+        value: gemini-2.5-flash-image
+      - key: GEMINI_TIMEOUT_MS
+        value: "180000"
+      - key: MAX_FILE_SIZE_MB
+        value: "12"
+      - key: MAX_RESULTS
+        value: "12"
+      - key: GEMINI_API_KEY
+        sync: false
