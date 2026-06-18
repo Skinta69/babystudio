@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BabyStudio AI</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="panel left-panel">
+      <div class="brand">
+        <div class="logo">BabyStudio</div>
+        <p>Upload ảnh bé, chọn concept và pose, tạo ảnh studio AI giữ khuôn mặt thật.</p>
+      </div>
+
+      <form id="generateForm" class="form">
+        <div class="field">
+          <label for="babyPhoto">Ảnh bé</label>
+          <div id="dropzone" class="dropzone">
+            <input id="babyPhoto" name="babyPhoto" type="file" accept="image/png,image/jpeg,image/webp" required>
+            <div>
+              <strong>Chọn hoặc kéo ảnh vào đây</strong>
+              <span>JPG, PNG, WEBP - tối đa 12MB</span>
+            </div>
+          </div>
+          <div id="previewWrap" class="preview-wrap hidden">
+            <img id="previewImage" alt="Ảnh bé đã upload">
+            <button id="removePhoto" type="button">Xóa ảnh</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Concept</label>
+          <div id="conceptList" class="choice-grid"></div>
+        </div>
+
+        <div class="field">
+          <label>Pose</label>
+          <div id="poseList" class="choice-grid"></div>
+        </div>
+
+        <div class="summary">
+          <div>
+            <span>Số ảnh sẽ tạo</span>
+            <strong id="jobCount">0</strong>
+          </div>
+          <button id="generateBtn" type="submit" disabled>Tạo ảnh AI</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel right-panel">
+      <div id="idleState" class="state">
+        <h1>Studio portrait mới cho bé</h1>
+        <p>Ảnh upload được gửi trực tiếp vào Gemini image editing workflow làm ảnh tham chiếu.</p>
+      </div>
+
+      <div id="loadingState" class="state hidden">
+        <div class="spinner"></div>
+        <h2>Đang tạo ảnh studio...</h2>
+        <p id="loadingText">Đang upload ảnh và gửi yêu cầu AI.</p>
+        <div class="progress">
+          <div id="progressBar"></div>
+        </div>
+      </div>
+
+      <div id="errorState" class="state hidden">
+        <h2>Không tạo được ảnh</h2>
+        <p id="errorText"></p>
+      </div>
+
+      <div id="resultState" class="results hidden">
+        <div class="result-head">
+          <div>
+            <h2>Kết quả AI</h2>
+            <p id="resultCount"></p>
+          </div>
+          <button id="resetBtn" type="button">Tạo bộ khác</button>
+        </div>
+        <div id="resultGrid" class="result-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
